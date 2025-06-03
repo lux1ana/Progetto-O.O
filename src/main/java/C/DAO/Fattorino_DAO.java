@@ -1,15 +1,13 @@
 package C.DAO;
 
 import Classi.Fattorino;
-import Classi.Tipo_Trasporto;
-import Classi.TipoDipendente;
 import Classi.Genere;
-import Classi.TipoPersona;
+import Classi.tipo_persona;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Classi.Tipo_Trasporto.*;
+import static Classi.tipologia_trasporto.*;
 
 public class Fattorino_DAO {
     private Connection conn;
@@ -20,10 +18,10 @@ public class Fattorino_DAO {
 
     // Metodo per aggiungere un Fattorino al database
     public void aggiungiFattorino(Fattorino fattorino) {
-        String sql = "INSERT INTO Fattorino (CodiceFiscale, Nome, Cognome, Email, Pw, DataDiNascita, TipoPersona, Genere, Stipendio, Data_Assunzione, Data_Scad, disponibilita, veicoloUtilizzabile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Persona  (cod_fiscale, nome, cognome, email, pw, data_di_nascita, tipo_persona, genere, stipendio, data_assunzione, data_scadenza_contratto, disponibilità, veicolo_utilizzabile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE tipo_persona = 'Fattorino' OR 'Magazziniere'";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, fattorino.getCodiceFiscale());
+            stmt.setString(1, fattorino.getCod_fiscale());
             stmt.setString(2, fattorino.getNome());
             stmt.setString(3, fattorino.getCognome());
             stmt.setString(4, fattorino.getEmail());
@@ -32,10 +30,10 @@ public class Fattorino_DAO {
             stmt.setString(7, fattorino.getTipoPersona().toString());
             stmt.setString(8, fattorino.getGenere().toString());
             stmt.setFloat(9, fattorino.getStipendio());
-            stmt.setDate(10, new Date(fattorino.getDataAssunzione().getTime()));
-            stmt.setDate(11, fattorino.getDataScadenzaContratto() != null ? new Date(fattorino.getDataScadenzaContratto().getTime()) : null);
+            stmt.setDate(10, new Date(fattorino.getData_assunzione().getTime()));
+            stmt.setDate(11, fattorino.getData_scadenza_contratto() != null ? new Date(fattorino.getData_scadenza_contratto().getTime()) : null);
             stmt.setBoolean(12, fattorino.isDisponibile());
-            stmt.setString(13, fattorino.getVeicoloUtilizzabile().toString());
+            stmt.setString(13, fattorino.getVeicolo_utilizzabile().toString());
             stmt.executeUpdate();
             System.out.println("Fattorino aggiunto con successo!");
 
@@ -47,7 +45,7 @@ public class Fattorino_DAO {
     // Metodo per ottenere tutti i fattorini
     public List<Fattorino> getAllFattorini() {
         List<Fattorino> fattorini = new ArrayList<>();
-        String sql = "SELECT * FROM Fattorino";
+        String sql = "SELECT * FROM Persona WHERE tipo_persona = 'Fattorino'";
 
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -56,18 +54,17 @@ public class Fattorino_DAO {
                 Fattorino fattorino = new Fattorino(
                         rs.getString("nome"),
                         rs.getString("cognome"),
-                        rs.getDate("dataNascita"),
+                        rs.getDate("data_di_nascita"),
                         rs.getString("email"),
-                        rs.getString("passord"),
-                        rs.getString("codiceFiscale"),
+                        rs.getString("pw"),
+                        rs.getString("cod_fiscale"),
                         Genere.valueOf(rs.getString("genere")),
-                        TipoPersona.valueOf(rs.getString("tipoPersona")),
-                        rs.getFloat("Stipendio"),
-                        rs.getDate("Data_Assunzione"),
-                        rs.getDate("Data_Scad"),
-                        TipoDipendente.valueOf(rs.getString("tipoDipendente")),
-                        rs.getBoolean("disponibilita"),
-                        valueOf(rs.getString("veicoloUtilizzabile"))
+                        tipo_persona.valueOf(rs.getString("tipo_persona")),
+                        rs.getFloat("stipendio"),
+                        rs.getDate("data_assunzione"),
+                        rs.getDate("data_scadenza_contratto"),
+                        rs.getBoolean("disponibilità"),
+                        valueOf(rs.getString("veicolo_utilizzabile"))
 
                 );
                 fattorini.add(fattorino);
@@ -82,7 +79,7 @@ public class Fattorino_DAO {
     // Metodo per ottenere un Fattorino per codice fiscale
     public Fattorino getFattorinoByCodiceFiscale(String codiceFiscale) {
         Fattorino fattorino = null;
-        String sql = "SELECT * FROM Fattorino WHERE CodiceFiscale = ?";
+        String sql = "SELECT * FROM Persona WHERE tipo_persona = 'Fattorino' AND  cod_fiscale = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, codiceFiscale);
@@ -92,18 +89,17 @@ public class Fattorino_DAO {
                     fattorino = new Fattorino(
                             rs.getString("nome"),
                             rs.getString("cognome"),
-                            rs.getDate("dataNascita"),
+                            rs.getDate("data_di_nascita"),
                             rs.getString("email"),
-                            rs.getString("passord"),
-                            rs.getString("codiceFiscale"),
+                            rs.getString("pw"),
+                            rs.getString("cod_fiscale"),
                             Genere.valueOf(rs.getString("genere")),
-                            TipoPersona.valueOf(rs.getString("tipoPersona")),
-                            rs.getFloat("Stipendio"),
-                            rs.getDate("Data_Assunzione"),
-                            rs.getDate("Data_Scad"),
-                            TipoDipendente.valueOf(rs.getString("tipoDipendente")),
-                            rs.getBoolean("disponibilita"),
-                            valueOf(rs.getString("veicoloUtilizzabile"))
+                            tipo_persona.valueOf(rs.getString("tipo_persona")),
+                            rs.getFloat("stipendio"),
+                            rs.getDate("data_assunzione"),
+                            rs.getDate("data_scadenza_contratto"),
+                            rs.getBoolean("disponibilità"),
+                            valueOf(rs.getString("veicolo_utilizzabile"))
                     );
                 }
             }
@@ -112,4 +108,38 @@ public class Fattorino_DAO {
         }
         return fattorino;
     }
+
+    public List<Fattorino> getFattoriniDisponibili() {
+        List<Fattorino> fattoriniDisponibili = new ArrayList<>();
+        String sql = "SELECT * FROM Persona  WHERE tipo_persona = 'Fattorino' AND  disponibilità = true";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Fattorino fattorino = new Fattorino(
+                        rs.getString("nome"),
+                        rs.getString("cognome"),
+                        rs.getDate("data_di_nascita"),
+                        rs.getString("email"),
+                        rs.getString("pw"),
+                        rs.getString("cod_fiscale"),
+                        Genere.valueOf(rs.getString("genere")),
+                        tipo_persona.valueOf(rs.getString("tipo_persona")),
+                        rs.getFloat("stipendio"),
+                        rs.getDate("data_assunzione"),
+                        rs.getDate("data_scadenza_contratto"),
+                        rs.getBoolean("disponibilità"),
+                        valueOf(rs.getString("veicolo_utilizzabile"))
+                );
+                fattoriniDisponibili.add(fattorino);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return fattoriniDisponibili;
+    }
+
 }

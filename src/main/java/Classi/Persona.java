@@ -2,27 +2,29 @@ package Classi;
 import java.util.Date;
 
 public class Persona {
-    private String nome;
-    private String cognome;
+    protected String nome;
+    protected String cognome;
     private Date dataNascita;
     private String email;
     private String password;
-    public String CodiceFiscale;
-    private TipoPersona tipoPersona;
+    public String cod_fiscale;
+    private tipo_persona tipopersona;
     public Genere Genere;
 
     // Costruttore di Persona
-    public Persona(String nome, String cognome, Date dataNascita, String email, String password, String CodiceFiscale, TipoPersona tipoPersona, Genere Genere) {
+    public Persona(String nome, String cognome, Date dataNascita, String email, String password, String cod_fiscale, tipo_persona tipopersona, Genere Genere) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataNascita = dataNascita;
         this.email = email;
         this.password = password;
-        this.CodiceFiscale = CodiceFiscale;
-        this.tipoPersona = tipoPersona;
+        this.cod_fiscale = cod_fiscale;
+        this.tipopersona = tipopersona;
         this.Genere = Genere;
     }
-
+    public Persona(String codfiscale) {
+        this.cod_fiscale = codfiscale;
+    }
     // Metodo per impostare la password con una lunghezza minima
     public void setPassword(String password) {
         if (password.length() < 8) {
@@ -31,13 +33,13 @@ public class Persona {
         this.password = password;
     }
 
-    // Metodo per ottenere la password modo "criptato"
+
     public String getPassword() {
-        return "********"; // Per non mostrare la password reale
+        return this.password;
     }
 
-    public String getCodiceFiscale() {
-        return this.CodiceFiscale;
+    public String getCod_fiscale() {
+        return this.cod_fiscale;
     }
 
     public String getNome() {
@@ -56,8 +58,8 @@ public class Persona {
         return this.dataNascita;
     }
 
-    public TipoPersona getTipoPersona() {  // Restituisce l'enum, non Byte!
-        return this.tipoPersona;
+    public tipo_persona getTipoPersona() {  // Restituisce l'enum, non Byte!
+        return this.tipopersona;
     }
 
     public Genere getGenere() {

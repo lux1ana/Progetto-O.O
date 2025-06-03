@@ -2,9 +2,9 @@ package C.DAO;
 
 import Classi.Magazziniere;
 import Classi.Genere;
-import Classi.TipoPersona;
+import Classi.tipo_persona;
 import Classi.Magazzino;
-import Classi.Tipo_Trasporto;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class Magazziniere_DAO {
         String sql = "INSERT INTO Magazziniere (CodiceFiscale, Nome, Cognome, Email, Pw, DataDiNascita, TipoPersona, Genere, NumeroMagazzino, Veicolo_Utilizzabile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, magazziniere.getCodiceFiscale());
+            stmt.setString(1, magazziniere.getCod_fiscale());
             stmt.setString(2, magazziniere.getNome());
             stmt.setString(3, magazziniere.getCognome());
             stmt.setString(4, magazziniere.getEmail());
@@ -56,7 +56,7 @@ public class Magazziniere_DAO {
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getString("CodiceFiscale"),
-                        TipoPersona.valueOf(rs.getString("tipoPersona")),
+                        tipo_persona.valueOf(rs.getString("tipoPersona")),
                         Genere.valueOf(rs.getString("genere")),
                         new Magazzino(rs.getInt("numeroMagazzino"))
 
@@ -87,7 +87,7 @@ public class Magazziniere_DAO {
                             rs.getString("email"),
                             rs.getString("Password"),
                             rs.getString("CodiceFiscale"),
-                            TipoPersona.valueOf(rs.getString("tipoPersona")),
+                            tipo_persona.valueOf(rs.getString("tipoPersona")),
                             Genere.valueOf(rs.getString("Genere")),
                             new Magazzino(rs.getInt("numeroMagazzino"))
                     );

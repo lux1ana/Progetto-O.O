@@ -2,7 +2,7 @@ package C.DAO;
 
 import Classi.Spedizione;
 import Classi.Persona;
-import Classi.Tipo_Trasporto;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ public class Spedizione_DAO {
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, spedizione.CodiceSpedizione);
-            stmt.setString(2, spedizione.CodiceFiscale_Fattorino.getCodiceFiscale());  // Usa il CF dal oggetto Persona
+            stmt.setString(1, spedizione.codice_spedizione);
+            stmt.setString(2, spedizione.CodiceFiscale_Fattorino.getCod_fiscale());  // Usa il CF dal oggetto Persona
             stmt.setString(3, spedizione.Tipo_Trasporto.toString());
             stmt.setFloat(4, spedizione.pesoSpedizione);
             stmt.setString(5, spedizione.regioneSpedizione);
@@ -48,13 +48,15 @@ public class Spedizione_DAO {
 
                 if (fattorino != null) {
                     Spedizione spedizione = new Spedizione(
-                            rs.getString("CodiceSpedizione"),
-                            fattorino,  // Oggetto Persona con tutti i campi
-                            null,        // Esempio: eventuale oggetto Trasporto (da gestire se necessario)
+                            rs.getString("codice_spedizione"),
+                            fattorino,
+                            null,  // Da gestire il Tipo_Trasporto se necessario
                             rs.getFloat("PesoSpedizione"),
                             rs.getString("RegioneSpedizione"),
                             rs.getBoolean("SpedizioneEffettuata")
                     );
+                    spedizione.SpedizioneConclusa = rs.getBoolean("SpedizioneConclusa");
+
                     spedizioni.add(spedizione);
                 }
             }
@@ -62,9 +64,36 @@ public class Spedizione_DAO {
         return spedizioni;
     }
 
+    // Ottieni una singola spedizione tramite il codice
+    public Spedizione getSpedizioneByCodice(String codice) throws SQLException {
+        String sql = "SELECT * FROM Spedizione WHERE codice_spedizione = ?";
+        Spedizione spedizione = null;
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, codice);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Persona fattorino = personaDao.getPersonaByCodiceFiscale(rs.getString("CodiceFiscale_Fattorino"));
+
+                spedizione = new Spedizione(
+                        rs.getString("codice_spedizione"),
+                        fattorino,
+                        null,
+                        rs.getFloat("PesoSpedizione"),
+                        rs.getString("RegioneSpedizione"),
+                        rs.getBoolean("SpedizioneEffettuata")
+                );
+                spedizione.SpedizioneConclusa = rs.getBoolean("SpedizioneConclusa");
+            }
+        }
+
+        return spedizione;
+    }
+
     // Aggiorna lo stato di una spedizione
     public void aggiornaStatoSpedizione(String codiceSpedizione, boolean spedizioneConclusa) throws SQLException {
-        String sql = "UPDATE Spedizione SET SpedizioneConclusa = ? WHERE CodiceSpedizione = ?";
+        String sql = "UPDATE Spedizione SET SpedizioneConclusa = ? WHERE codice_spedizione = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setBoolean(1, spedizioneConclusa);
@@ -75,7 +104,7 @@ public class Spedizione_DAO {
 
     // Elimina una spedizione
     public void eliminaSpedizione(String codiceSpedizione) throws SQLException {
-        String sql = "DELETE FROM Spedizione WHERE CodiceSpedizione = ?";
+        String sql = "DELETE FROM Spedizione WHERE codice_spedizione = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, codiceSpedizione);

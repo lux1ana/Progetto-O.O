@@ -3,18 +3,18 @@ package Classi;
 import java.util.Date;
 
 public class Dipendente extends Persona {
-    public TipoDipendente TipoDipendente;
+    public tipo_persona tipo_persona;
     private float stipendio;
-    private Date dataScadenzaContratto;
-    private Date dataAssunzione;
-    private TipoDipendente tipoDipendente;
+    private Date data_scadenza_contratto;
+    private Date data_assunzione;
 
-    public Dipendente(String nome, String cognome, Date dataNascita, String email, String password, String codiceFiscale, Genere genere, TipoPersona tipoPersona, float stipendio, Date dataScadenzaContratto, Date dataAssunzione, TipoDipendente tipoDipendente) {
-        super(nome, cognome, dataNascita, email, password, codiceFiscale, tipoPersona, genere);
+
+    public Dipendente(String nome, String cognome, Date dataNascita, String email, String password, String codiceFiscale, Genere genere, tipo_persona tipopersona, float stipendio, Date data_scadenza_contratto, Date data_assunzione) {
+        super(nome, cognome, dataNascita, email, password, codiceFiscale, tipopersona, genere);
         this.stipendio = stipendio;
-        this.dataScadenzaContratto = dataScadenzaContratto;
-        this.dataAssunzione = dataAssunzione;
-        this.tipoDipendente = tipoDipendente;
+        this.data_scadenza_contratto = data_scadenza_contratto;
+        this.data_assunzione = data_assunzione;
+
     }
 
     // Getter e Setter
@@ -26,28 +26,21 @@ public class Dipendente extends Persona {
         this.stipendio = stipendio;
     }
 
-    public Date getDataScadenzaContratto() {
-        return dataScadenzaContratto;
+    public Date getData_scadenza_contratto() {
+        return data_scadenza_contratto;
     }
 
-    public void setDataScadenzaContratto(Date dataScadenzaContratto) {
-        this.dataScadenzaContratto = dataScadenzaContratto;
+    public void setData_scadenza_contratto(Date data_scadenza_contratto) {
+        this.data_scadenza_contratto = data_scadenza_contratto;
     }
 
-    public Date getDataAssunzione() {
-        return dataAssunzione;
+    public Date getData_assunzione() {
+        return data_assunzione;
     }
 
-    public void setDataAssunzione(Date dataAssunzione) {
-        this.dataAssunzione = dataAssunzione;
+    public void setData_assunzione(Date data_assunzione) {
+        this.data_assunzione = data_assunzione;
     }
 
-    public TipoDipendente getTipoDipendente() {
-        return tipoDipendente;
-    }
-
-    public void setTipoDipendente(TipoDipendente tipoDipendente) {
-        this.tipoDipendente = tipoDipendente;
-    }
 }
 

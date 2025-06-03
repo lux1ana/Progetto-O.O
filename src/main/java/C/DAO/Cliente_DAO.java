@@ -1,6 +1,8 @@
 package C.DAO;
 
 import Classi.Cliente;
+import Classi.tipo_persona;
+
 import java.sql.*;
 
 public class Cliente_DAO {
@@ -19,7 +21,7 @@ public class Cliente_DAO {
             stmt.setDate(3, new java.sql.Date(cliente.getDataNascita().getTime()));
             stmt.setString(4, cliente.getEmail());
             stmt.setString(5, cliente.getPassword());
-            stmt.setString(6, cliente.getCodiceFiscale());
+            stmt.setString(6, cliente.getCod_fiscale());
             stmt.setString(7, cliente.getGenere().toString());
             stmt.setString(8, cliente.getTipoPersona().toString());
             stmt.setString(9, cliente.getNomeVia());
@@ -52,7 +54,7 @@ public class Cliente_DAO {
                         rs.getString("password"),
                         rs.getString("codiceFiscale"),
                         Classi.Genere.valueOf(rs.getString("genere")),
-                        Classi.TipoPersona.valueOf(rs.getString("tipoPersona")),
+                        tipo_persona.valueOf(rs.getString("tipoPersona")),
                         rs.getString("nomeVia"),
                         rs.getInt("numero"),
                         rs.getString("citta"),
@@ -86,7 +88,7 @@ public class Cliente_DAO {
             stmt.setString(12, cliente.getStato());
             stmt.setString(13, cliente.getProvincia());
             stmt.setString(14, cliente.getTelefono());
-            stmt.setString(15, cliente.getCodiceFiscale());
+            stmt.setString(15, cliente.getCod_fiscale());
 
             stmt.executeUpdate();
             System.out.println("Cliente aggiornato con successo!");

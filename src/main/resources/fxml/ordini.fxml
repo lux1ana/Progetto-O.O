@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfacce.controllers.ordini">
+    <children>
+        <AnchorPane>
+            <children>
+                <ImageView fitHeight="514.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@immagini/lista ordini.png" />
+                    </image>
+                </ImageView>
+
+                <Button fx:id="ricercaButton" layoutX="326.0" layoutY="99.0" mnemonicParsing="false" onAction="#ricercaOrdini" prefHeight="44.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: transparent;" text="🔍" />
+
+                <TextField fx:id="utenteField" layoutY="98.0" prefHeight="44.0" prefWidth="327.0" promptText="Cerca per utente..." />
+
+                <DatePicker fx:id="inizioField" layoutX="366.0" layoutY="99.0" prefHeight="44.0" prefWidth="65.0" promptText="Data Inizio" />
+
+                <DatePicker fx:id="FineField" layoutX="436.0" layoutY="99.0" prefHeight="44.0" prefWidth="65.0" promptText="Data Fine" />
+
+                <TableView fx:id="TabellaField" layoutX="-1.0" layoutY="154.0" prefHeight="299.0" prefWidth="501.0">
+                    <columns>
+                        <TableColumn fx:id="colcodice_ordine" prefWidth="106.6" text="ID_ORDINE" />
+                        <TableColumn fx:id="coldata_ordine" prefWidth="88.6" text="DATA" />
+                        <TableColumn fx:id="colUtente" prefWidth="99.4" text="UTENTE" />
+                        <TableColumn fx:id="colcod_spedizione" prefWidth="124.0" text="CODICE_SPEDIZIONE" />
+                        <TableColumn fx:id="colCosto" prefWidth="82.4" text="COSTO" />
+                    </columns>
+                </TableView>
+            <Button fx:id = "indietroField" layoutX="14.0" layoutY="460.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-font-weight: bold;" text="←Indietro" onAction="#tornaIndietro" />
+
+            </children>
+        </AnchorPane>
+    </children>
+</HBox>
