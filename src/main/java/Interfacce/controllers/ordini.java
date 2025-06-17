@@ -39,7 +39,7 @@ public class ordini {
     public void initialize() {
         try {
             Connection conn = Database_DAO.getConnection();
-            ordineDAO = new Ordine_DAO(conn);
+            ordineDAO = new Ordine_DAO();
             initTableColumns();
             caricaTuttiGliOrdini();
         } catch (SQLException e) {

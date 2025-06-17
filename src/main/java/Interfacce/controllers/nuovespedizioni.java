@@ -62,7 +62,7 @@ public class nuovespedizioni implements Initializable {
             Connection conn = Database_DAO.getConnection();
             System.out.println("Connessione al DB riuscita!"); // Debug
 
-            ordineDAO = new Ordine_DAO(conn);
+            ordineDAO = new Ordine_DAO();
             fattorinoDAO = new Fattorino_DAO(conn);
             trasportoDAO = new Trasporto_DAO(conn);
 

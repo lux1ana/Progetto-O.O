@@ -27,4 +27,5 @@ public class Immagazzinata {
     public int getNumeroMagazzino() {
         return numeroMagazzino;
     }
+
 }

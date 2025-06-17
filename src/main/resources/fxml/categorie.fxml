@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfacce.controllers.listaprodotti">
+   <children>
+      <AnchorPane>
+         <children>
+             <ImageView pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@immagini/categorie.png" />
+                 </image>
+             </ImageView>
+            <Button fx:id="abbigliamentofield" layoutX="7.0" layoutY="114.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="216.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+            <Button fx:id="napolifield" layoutX="7.0" layoutY="250.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="216.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+            <Button fx:id="beautyfield" layoutX="142.0" layoutY="384.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="216.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+            <Button fx:id="librifield" layoutX="276.0" layoutY="250.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="216.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+            <Button fx:id="musicafield" layoutX="276.0" layoutY="114.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="216.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+             <Button fx:id = "indietroField" layoutX="14.0" layoutY="460.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-font-weight: bold;" text="←Indietro"/>
+         </children></AnchorPane>
+   </children>
+</HBox>

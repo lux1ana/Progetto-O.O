@@ -27,8 +27,8 @@
                 <ComboBox fx:id="fattorinoField" layoutX="10.0" layoutY="456.0" prefHeight="35.0" prefWidth="580.0" />
 
                 <!-- Bottone Invio -->
-                <Button fx:id="invioButton" layoutX="490.0" layoutY="521.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" text="Crea Spedizione" />
-            <Button fx:id="indietroButton"  onAction="#tornaIndietro" layoutX="14.0" layoutY="521.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-font-weight: bold;" text="←Indietro" />
+                <Button fx:id="invioButton" layoutX="477.0" layoutY="521.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" text="Crea Spedizione" />
+            <Button fx:id="indietroButton" layoutX="14.0" layoutY="521.0" mnemonicParsing="false" onAction="#tornaIndietro" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-font-weight: bold;" text="←Indietro" />
 
 
             </children>

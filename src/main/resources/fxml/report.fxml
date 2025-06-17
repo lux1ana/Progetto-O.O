@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfacce.controllers.report">
+    <children>
+        <AnchorPane>
+            <children>
+                <ImageView pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@immagini/report.png" />
+                    </image>
+                </ImageView>
+
+                <!-- Bottone per generare il report -->
+                <Button fx:id="Reportfield" layoutX="465.0" layoutY="100.0" mnemonicParsing="false" onAction="#caricaReport" prefHeight="52.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+                <Button fx:id="indietroField" layoutX="10.0" layoutY="470.0" mnemonicParsing="false" onAction="#tornaIndietro" prefHeight="14.0" prefWidth="104.0" style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-font-weight: bold;" text="←Indietro" />
+
+                <!-- DatePicker per selezionare il mese -->
+                <DatePicker fx:id="ricercaMeseButton" layoutX="-6.0" layoutY="100.0" prefHeight="52.0" prefWidth="462.0" />
+
+                <!-- BarChart per visualizzare i dati degli ordini -->
+                <BarChart fx:id="ordiniChart" layoutY="250.0" legendVisible="false" prefHeight="218.0" prefWidth="500.0" title="Ordini:" titleSide="LEFT">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
+
+                <!-- Label per l'ordine con più prodotti -->
+                <Label fx:id="piuOrdiniText" layoutX="14.0" layoutY="159.0" prefHeight="43.0" prefWidth="437.0" text="Ordine con più prodotti:" textFill="#fffbfb">
+                    <font>
+                        <Font name="Calibri" size="16.0" />
+                    </font>
+                </Label>
+
+                <!-- Label per l'ordine con meno prodotti -->
+                <Label fx:id="menoOrdiniText" layoutX="10.0" layoutY="228.0" prefHeight="43.0" prefWidth="445.0" text="Ordine con meno prodotti:" textFill="#fffbfb">
+                    <font>
+                        <Font name="Calibri" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</HBox>

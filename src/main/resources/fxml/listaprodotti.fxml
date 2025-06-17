@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox spacing="20" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfacce.controllers.listaprodotti">
+
+    <children>
+        <AnchorPane>
+            <children>
+                <ImageView pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@immagini/listaprodotti.png" />
+                    </image>
+                </ImageView>
+
+                <TableView fx:id="prodottiTable" layoutY="165.0" prefHeight="300.0" prefWidth="500.0">
+                    <columns>
+                        <TableColumn fx:id="colNome" prefWidth="200" text="Nome Prodotto" />
+                        <TableColumn fx:id="colDisponibilita" prefWidth="100" text="Disponibilità" />
+                        <TableColumn fx:id="colAzioni" prefWidth="180" text="Modifica" />
+                    </columns>
+                </TableView>
+                <TextField fx:id="RicercaprodottoField" layoutY="102.0" prefHeight="41.0" prefWidth="461.0" text="Ricerca Prodotto" />
+                <Button fx:id="ricercabutton" layoutX="462.0" layoutY="102.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="37.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+                <Button fx:id="indietroField" layoutX="7.0" layoutY="470.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="83.0" style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-font-weight: bold;" text="←Indietro" onAction="#tornaIndietro" />
+            </children>
+        </AnchorPane>
+    </children>
+</HBox>

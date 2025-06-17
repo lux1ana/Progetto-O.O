@@ -3,7 +3,6 @@ package C.DAO;
 import Classi.Ordine;
 import Classi.Persona;
 import Classi.Spedizione;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +10,13 @@ import java.util.List;
 public class Ordine_DAO {
     private Connection conn;
 
-    public Ordine_DAO(Connection conn) {
-        this.conn = conn;
+    public Ordine_DAO() {
+        try {
+            this.conn = Database_DAO.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Errore durante la connessione al database");
+        }
     }
 
     // Recupera tutti gli ordini dal database
@@ -133,6 +137,29 @@ public class Ordine_DAO {
                 new Spedizione(rs.getString("codice_spedizione")),
                 rs.getInt("num_prodotti")
         );
+    }
+    // Recupera gli ordini di un mese specifico ordinati per numero di prodotti (dal più grande al più piccolo)
+    public List<Ordine> getOrdiniByNumeroProdotti(Date data) throws SQLException {
+        List<Ordine> listaOrdini = new ArrayList<>();
+
+        // Query che filtra per mese/anno e ordina per num_prodotti DESC
+        String query = "SELECT * FROM Ordine " +
+                "WHERE EXTRACT(MONTH FROM data_ordine) = EXTRACT(MONTH FROM ?::DATE) " +
+                "AND EXTRACT(YEAR FROM data_ordine) = EXTRACT(YEAR FROM ?::DATE) " +
+                "ORDER BY num_prodotti DESC";
+
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setDate(1, new java.sql.Date(data.getTime()));
+            stmt.setDate(2, new java.sql.Date(data.getTime()));
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                listaOrdini.add(creaOrdineDaResultSet(rs));
+            }
+        }
+        return listaOrdini;
     }
 }
 

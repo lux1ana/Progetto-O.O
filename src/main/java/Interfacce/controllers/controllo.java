@@ -14,12 +14,22 @@ public class controllo {
     private Button Ordinifield;
 
     @FXML
-    private Button Spedizionifield; // Aggiunto nuovo bottone
+    private Button Spedizionifield;
+
+    @FXML
+    private Button Reportfield;
+
+    @FXML
+    private Button Prodottifield;
+
 
     @FXML
     private void initialize() {
         Ordinifield.setOnAction(this::apriOrdini);
-        Spedizionifield.setOnAction(this::apriSpedizioni); // Aggiunto evento
+        Spedizionifield.setOnAction(this::apriSpedizioni);
+        Reportfield.setOnAction(this::apriReport);
+        Prodottifield.setOnAction(this::apriProdotti);
+
     }
 
     private void apriOrdini(ActionEvent event) {
@@ -32,7 +42,7 @@ public class controllo {
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Chiudi finestra attuale
+
             Stage currentStage = (Stage) Ordinifield.getScene().getWindow();
             currentStage.close();
 
@@ -51,8 +61,42 @@ public class controllo {
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Chiudi finestra attuale
             Stage currentStage = (Stage) Spedizionifield.getScene().getWindow();
+            currentStage.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void apriReport(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/report.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Report Ordini");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage currentStage = (Stage) Reportfield.getScene().getWindow();
+            currentStage.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void apriProdotti(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/listaprodotti.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Lista Prodotti");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage currentStage = (Stage) Prodottifield.getScene().getWindow();
             currentStage.close();
 
         } catch (Exception e) {
