@@ -1,5 +1,10 @@
 package Classi;
 
+import Classi.Merce;
+import Classi.Ordine;
+
+//La classe acquista, come immagazzinata, è utilizzata per visualizzare i singoli prodotti acquistati all'interno degli
+//ordini.
 public class Acquista {
     public Merce Codice_Prodotto;
     public Ordine Codice_Ordine;
@@ -8,7 +13,8 @@ public class Acquista {
     public float Costo;
     private int Numero_Magazzino;
 
-    public Acquista (Merce Codice_Prodotto,  Ordine Codice_Ordine, int Quantita, float Peso, float Costo, int Numero_Magazzino) {
+    public Acquista (Merce Codice_Prodotto,  Ordine Codice_Ordine, int Quantita, float Peso,
+                     float Costo, int Numero_Magazzino) {
         this.Codice_Prodotto = Codice_Prodotto;
         this.Codice_Ordine = Codice_Ordine;
         this.Quantita = Quantita;

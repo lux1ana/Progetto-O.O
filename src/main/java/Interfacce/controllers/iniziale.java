@@ -11,6 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+/*
+ Questa è la schermata del log-in, in cui l'admin immette email e password per accedere. Si ha anche la possibilità
+ di creare un nuovo utente tramite la registrazione
+*/
+
 
 public class iniziale {
 

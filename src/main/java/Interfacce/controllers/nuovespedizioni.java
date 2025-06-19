@@ -83,7 +83,7 @@ public class nuovespedizioni implements Initializable {
             });
 
         } catch (SQLException e) {
-            System.err.println("ERRORE CONNESSIONE DB: " + e.getMessage()); // Debug più dettagliato
+            System.err.println("ERRORE CONNESSIONE DB: " + e.getMessage()); // Debug
             e.printStackTrace(); // Stampa lo stack trace completo
             showError("Errore durante la connessione al database: " + e.getMessage());
         }
@@ -139,7 +139,6 @@ public class nuovespedizioni implements Initializable {
         System.out.println("Fattorino selezionato:");
         System.out.println(fattorinoSelezionato);
 
-        // TODO: inserisci qui la chiamata alla DAO per creare la spedizione nel DB
     }
 
     private void showError(String msg) {

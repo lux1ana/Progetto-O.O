@@ -14,14 +14,14 @@ public class Immagazzinata_DAO {
     private final Merce_DAO merceDAO;
     private final Magazzino_DAO magazzinoDAO;
 
-    // Costruttore (riceve le istanze dei DAO necessari)
+
     public Immagazzinata_DAO(Connection connection, Merce_DAO merceDAO, Magazzino_DAO magazzinoDAO) {
         this.connection = connection;
         this.merceDAO = null;
         this.magazzinoDAO = null;
     }
 
-
+    //Metodo per ottenere tutte le merci immagazzinate
     public List<Immagazzinata> getTutteImmagazzinate() throws SQLException {
         List<Immagazzinata> lista = new ArrayList<>();
         String query = "SELECT * FROM Immagazzinata";
@@ -46,6 +46,7 @@ public class Immagazzinata_DAO {
         return lista;
     }
 
+    //Metodo per ottenere tute le merci di un determinato magazzino
     public List<ProdottoTabella> getProdottiPerMagazzino(int numeroMagazzino) throws SQLException {
         List<ProdottoTabella> lista = new ArrayList<>();
 
@@ -71,19 +72,21 @@ public class Immagazzinata_DAO {
         return lista;
     }
 
+    //Metodo per ottenere la disponibilità dei prodotti
     public int getDisponibilita(String codiceProdotto) throws SQLException {
         String sql = "SELECT SUM(quantità) FROM immagazzinata WHERE codice_prodotto = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, codiceProdotto);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1); // restituisce 0 se il risultato è null
+                return rs.getInt(1);
             } else {
                 return 0;
             }
         }
     }
 
+    //Metodo per aggiornare la disponibilità della merce
     public void aggiornaDisponibilita(String codiceProdotto, int nuovaquantita) throws SQLException {
         String sql = "UPDATE Immagazzinata SET quantità = ? WHERE TRIM(LOWER(codice_prodotto)) = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {

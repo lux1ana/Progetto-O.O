@@ -31,7 +31,7 @@
                         <TableColumn fx:id="colCosto" prefWidth="82.4" text="COSTO" />
                     </columns>
                 </TableView>
-            <Button fx:id = "indietroField" layoutX="14.0" layoutY="460.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-font-weight: bold;" text="←Indietro" onAction="#tornaIndietro" />
+                <Button fx:id = "indietroField" layoutX="14.0" layoutY="460.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-font-weight: bold;" text="←Indietro" onAction="#tornaIndietro" />
 
             </children>
         </AnchorPane>

@@ -15,8 +15,11 @@ public class Persona_DAO {
         this.conn = conn;
     }
 
+    //Metodo per aggiungere una Perosna al database
     public void aggiungiPersona(Persona persona) {
-        String sql = "INSERT INTO persona (cod_fiscale, nome, cognome, email, pw, data_di_nascita, tipo_persona, genere) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        // Aggiungo il campo nome_azienda nella query e nella insert
+        String sql = "INSERT INTO persona (cod_fiscale, nome, cognome, email, pw, data_di_nascita, tipo_persona, genere, nome_azienda) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?::tipopersona, ?::genere, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, persona.getCod_fiscale());
@@ -27,12 +30,18 @@ public class Persona_DAO {
             stmt.setDate(6, new java.sql.Date(persona.getDataNascita().getTime()));
             stmt.setString(7, persona.getTipoPersona().toString());
             stmt.setString(8, persona.getGenere().toString());
+
+            // Inserisco il nome azienda fisso "Napolizon"
+            stmt.setString(9, "Napolizon");
+
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+
+    //Metodo per trovare una Persona tramite email
     public Persona findByEmail(String email) {
         Persona persona = null;
         String query = "SELECT nome, cognome, data_di_nascita AS dataNascita, email, pw AS password, " +
@@ -62,6 +71,7 @@ public class Persona_DAO {
         return persona;
     }
 
+    //MEtodo per ottenere le Persone tramite il codice fiscale, che è l'identificativo
     public Persona getPersonaByCodiceFiscale(String codiceFiscale) {
         Persona persona = null;
         String sql = "SELECT nome, cognome, data_di_nascita AS dataNascita, email, pw AS password, " +
@@ -90,6 +100,7 @@ public class Persona_DAO {
         return persona;
     }
 
+    //Metodo per ottenere tutte le Persone
     public List<Persona> getTutteLePersone() {
         List<Persona> listaPersone = new ArrayList<>();
         String sql = "SELECT nome, cognome, data_di_nascita AS dataNascita, email, pw AS password, " +
@@ -116,6 +127,7 @@ public class Persona_DAO {
         return listaPersone;
     }
 
+    //Metodo per aggiornare la mail
     public void aggiornaEmail(String cod_fiscale, String nuovaEmail) {
         String sql = "UPDATE persona SET email = ? WHERE cod_fiscale = ?";
 
@@ -128,6 +140,7 @@ public class Persona_DAO {
         }
     }
 
+    //Metodo per eliminare una persona
     public void eliminaPersona(String cod_fiscale) {
         String sql = "DELETE FROM persona WHERE cod_fiscale = ?";
 
@@ -138,6 +151,7 @@ public class Persona_DAO {
             e.printStackTrace();
         }
     }
+
 
     private tipo_persona convertiTipoPersona(String dbValue) {
         if (dbValue == null) return null;

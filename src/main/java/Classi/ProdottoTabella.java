@@ -6,6 +6,8 @@ import Classi.Immagazzinata;
 import C.DAO.Merce_DAO;
 import C.DAO.Immagazzinata_DAO;
 
+//Questa è una classe DTO che ho usato come appoggio per il controller nuovespedizioni, vista la necessità di utilizzare
+//entrambe le classi Merci e Immagazzinata
 public class ProdottoTabella {
     private String Nome_prodotto;
     private int quantita;

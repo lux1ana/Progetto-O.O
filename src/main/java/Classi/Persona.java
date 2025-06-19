@@ -11,8 +11,8 @@ public class Persona {
     private tipo_persona tipopersona;
     public Genere Genere;
 
-    // Costruttore di Persona
-    public Persona(String nome, String cognome, Date dataNascita, String email, String password, String cod_fiscale, tipo_persona tipopersona, Genere Genere) {
+    public Persona(String nome, String cognome, Date dataNascita, String email, String password,
+                   String cod_fiscale, tipo_persona tipopersona, Genere Genere) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataNascita = dataNascita;
@@ -25,6 +25,7 @@ public class Persona {
     public Persona(String codfiscale) {
         this.cod_fiscale = codfiscale;
     }
+
     // Metodo per impostare la password con una lunghezza minima
     public void setPassword(String password) {
         if (password.length() < 8) {
@@ -32,7 +33,6 @@ public class Persona {
         }
         this.password = password;
     }
-
 
     public String getPassword() {
         return this.password;
@@ -58,7 +58,7 @@ public class Persona {
         return this.dataNascita;
     }
 
-    public tipo_persona getTipoPersona() {  // Restituisce l'enum, non Byte!
+    public tipo_persona getTipoPersona() {
         return this.tipopersona;
     }
 

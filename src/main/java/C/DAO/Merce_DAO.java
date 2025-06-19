@@ -33,7 +33,7 @@ public class Merce_DAO {
                         rs.getFloat("peso_oggetto_kg"),
                         rs.getString("Descrizione"),
                         rs.getFloat("costo_$"),
-                        tipologia.parseTipologia(rs.getString("tipologia")), // ✅ QUI
+                        tipologia.parseTipologia(rs.getString("tipologia")),
                         rs.getString("Codice_Prodotto")
                 );
                 listaMerce.add(merce);
@@ -44,7 +44,8 @@ public class Merce_DAO {
 
     // Metodo per inserire una nuova merce nel database
     public void insertMerce(Merce merce) throws SQLException {
-        String query = "INSERT INTO Merce (Nome_prodotto, Casa_Produttrice, peso_oggetto_kg, Descrizione, costo_$, Tipo_Merce, Codice_Prodotto) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Merce (Nome_prodotto, Casa_Produttrice, peso_oggetto_kg, Descrizione, costo_$," +
+                " Tipo_Merce, Codice_Prodotto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, merce.Nome_prodotto);

@@ -9,11 +9,14 @@ public class Fattorino extends Dipendente {
     public Fattorino(String nome, String cognome, Date data_di_nascita, String email, String pw, String cod_fiscale,
                      Genere genere, tipo_persona tipo_persona, float stipendio, Date dataScadenzaContratto,
                      Date dataAssunzione, boolean disponibilità, tipologia_trasporto veicolo_utilizzabile) {
+
         super(nome, cognome, data_di_nascita, email, pw, cod_fiscale, genere, tipo_persona, stipendio,
                 dataScadenzaContratto, dataAssunzione);
+
         this.disponibilità = disponibilità;
         this.veicolo_utilizzabile = veicolo_utilizzabile;
     }
+
     @Override
     public String toString() {
         return nome + " " + cognome + " (" + cod_fiscale + ")";

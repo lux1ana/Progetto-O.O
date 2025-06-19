@@ -12,6 +12,7 @@ public class Magazzino_DAO {
         this.conn = conn;
     }
 
+    //Metodo per ottenere tutti i Magazzni
     public List<Magazzino> getAllMagazzini() throws SQLException {
         List<Magazzino> magazzini = new ArrayList<>();
         String query = "SELECT * FROM Magazzino";
@@ -37,8 +38,10 @@ public class Magazzino_DAO {
         return magazzini;
     }
 
+    //Metodo per inserire un Magazzino all'interno del database
     public void insertMagazzino(Magazzino magazzino) throws SQLException {
-        String query = "INSERT INTO Magazzino (nome, capienzaMassima, capienzaDisponibile, numero, citta, provincia, stato, nomeVia, regione, numeroMagazzino) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Magazzino (nome, capienzaMassima, capienzaDisponibile, numero, citta, provincia," +
+                " stato, nomeVia, regione, numeroMagazzino) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, magazzino.getNome());
@@ -54,6 +57,8 @@ public class Magazzino_DAO {
             stmt.executeUpdate();
         }
     }
+
+    //Metodo per ottenere i Magazzini tramite il loro numero identificativo
     public Magazzino getMagazzinoByNumero(int numeroMagazzino) throws SQLException {
         String query = "SELECT * FROM Magazzino WHERE numeroMagazzino = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {

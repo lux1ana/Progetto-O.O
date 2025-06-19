@@ -15,12 +15,13 @@ public class Trasporto_DAO {
 
     // Aggiungi un nuovo trasporto
     public boolean aggiungiTrasporto(Trasporto trasporto) throws SQLException {
-        String query = "INSERT INTO Trasporto (targa, marca, anno_immatricolazione, tipologia_trasporto, peso_max_trasportabile_kg, disponibilità) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Trasporto (targa, marca, anno_immatricolazione, tipologia_trasporto," +
+                " peso_max_trasportabile_kg, disponibilità) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, trasporto.targa);
             stmt.setString(2, trasporto.marca);
-            stmt.setDate(3, new java.sql.Date(trasporto.anno_immatricolazione.getTime()));  // Converti java.util.Date → java.sql.Date
-            stmt.setString(4, trasporto.tipologia_trasporto.name());  // Usa .name() se è un enum
+            stmt.setDate(3, new java.sql.Date(trasporto.anno_immatricolazione.getTime()));
+            stmt.setString(4, trasporto.tipologia_trasporto.name());
             stmt.setFloat(5, trasporto.peso_max_trasportabile_kg);
             stmt.setBoolean(6, trasporto.disponibilità);
 

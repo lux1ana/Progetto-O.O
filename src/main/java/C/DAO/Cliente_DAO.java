@@ -14,7 +14,8 @@ public class Cliente_DAO {
 
     // Metodo per inserire un cliente nel database
     public void inserisciCliente(Cliente cliente) {
-        String sql = "INSERT INTO Cliente (nome, cognome, dataNascita, email, password, codiceFiscale, genere, tipoPersona, nomeVia, numero, citta, regione, stato, provincia, telefono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (nome, cognome, dataNascita, email, password, codiceFiscale, genere, " +
+                "tipoPersona, nomeVia, numero, citta, regione, stato, provincia, telefono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getCognome());
@@ -72,7 +73,8 @@ public class Cliente_DAO {
 
     // Metodo per aggiornare i dati di un cliente
     public void aggiornaCliente(Cliente cliente) {
-        String sql = "UPDATE Cliente SET nome = ?, cognome = ?, dataNascita = ?, email = ?, password = ?, genere = ?, tipoPersona = ?, nomeVia = ?, numero = ?, citta = ?, regione = ?, stato = ?, provincia = ?, telefono = ? WHERE codiceFiscale = ?";
+        String sql = "UPDATE Cliente SET nome = ?, cognome = ?, dataNascita = ?, email = ?, password = ?, genere = ?," +
+                " tipoPersona = ?, nomeVia = ?, numero = ?, citta = ?, regione = ?, stato = ?, provincia = ?, telefono = ? WHERE codiceFiscale = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getCognome());
@@ -109,4 +111,3 @@ public class Cliente_DAO {
         }
     }
 }
-

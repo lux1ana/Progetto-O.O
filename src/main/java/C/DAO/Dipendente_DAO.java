@@ -17,7 +17,8 @@ public class Dipendente_DAO {
 
     // Metodo per aggiungere un Dipendente nel database
     public void aggiungiDipendente(Dipendente dipendente) {
-        String sql = "INSERT INTO Dipendente (cod_fiscale, nome, cognome, email, pw, data_di_nascita, tipo_persona, genere, stipendio, data_assunzione, data_scadenza_contratto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Dipendente (cod_fiscale, nome, cognome, email, pw, data_di_nascita, tipo_persona," +
+                " genere, stipendio, data_assunzione, data_scadenza_contratto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, dipendente.getCod_fiscale());

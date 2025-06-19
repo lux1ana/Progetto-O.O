@@ -4,8 +4,6 @@ import javafx.beans.property.*;
 import java.util.Date;
 
 public class Ordine {
-
-
     public StringProperty codice_ordine;
     public ObjectProperty<Date> data_ordine;
     public StringProperty nomeVia;
@@ -20,7 +18,7 @@ public class Ordine {
     public ObjectProperty<Spedizione> codice_spedizione;
     public IntegerProperty  num_prodotti;
 
-    // Costruttore completo
+
     public Ordine(String codice_ordine, Date data_ordine, String Nome_Via, int Numero, String città,
                   String Provincia, String Stato, boolean Ordine_Effettuato, float Peso, double Costo,
                   Persona cod_fiscale_cliente, Spedizione codice_spedizione, Integer  num_prodotti) {
@@ -40,34 +38,52 @@ public class Ordine {
         this.num_prodotti = new SimpleIntegerProperty(num_prodotti);
     }
 
-    // Costruttore vuoto
+    //costruttore vuoto
     public Ordine() {
-        this("", null, "", 0, "", "", "", false, 0f, 0.0, null, null, 0);
+        this("", null, "", 0, "", "", "", false,
+                0f, 0.0, null, null, 0);
     }
     @Override
     public String toString() {
         return "Ordine #" + codice_ordine + " - " + città + ", " + data_ordine;
     }
 
-    // Getter e Setter
 
-    public String getCodice_ordine() { return codice_ordine.get();}
+    public String getCodice_ordine() {
+        return codice_ordine.get();
+    }
 
-    public void setCodice_ordine(String Codice_Ordine) { this.codice_ordine.set(Codice_Ordine);}
+    public void setCodice_ordine(String Codice_Ordine) {
+        this.codice_ordine.set(Codice_Ordine);
+    }
 
-    public Date getData_ordine() { return data_ordine.get();}
+    public Date getData_ordine() {
+        return data_ordine.get();
+    }
 
-    public void setData_ordine(Date Data_Ordine) { this.data_ordine.set(Data_Ordine); }
+    public void setData_ordine(Date Data_Ordine) {
+        this.data_ordine.set(Data_Ordine);
+    }
 
-    public String getNome_Via() { return nomeVia.get(); }
+    public String getNome_Via() {
+        return nomeVia.get();
+    }
 
-    public void setNome_Via(String Nome_Via) { this.nomeVia.set(Nome_Via); }
+    public void setNome_Via(String Nome_Via) {
+        this.nomeVia.set(Nome_Via);
+    }
 
-    public int getNumero() { return Numero.get(); }
+    public int getNumero() {
+        return Numero.get();
+    }
 
-    public void setNumero(int Numero) { this.Numero.set(Numero); }
+    public void setNumero(int Numero) {
+        this.Numero.set(Numero);
+    }
 
-    public String getCittà() { return città.get(); }
+    public String getCittà() {
+        return città.get();
+    }
 
     public void setCittà(String Citta) {
         this.città.set(Citta);
@@ -134,8 +150,6 @@ public class Ordine {
         this.num_prodotti.set(Num_prodotti);
     }
 
-
-    // Property methods (per JavaFX)
     public StringProperty Codice_OrdineProperty() {
         return codice_ordine;
     }

@@ -10,7 +10,8 @@ public class Merce {
     public tipologia tipologia;
     public String Codice_Prodotto;
 
-    public Merce(String Nome_prodotto, String Casa_Produttrice, Float peso_oggetto_kg, String Descrizione, Float costo_$, tipologia tipologia, String Codice_Prodotto) {
+    public Merce(String Nome_prodotto, String Casa_Produttrice, Float peso_oggetto_kg,
+                 String Descrizione, Float costo_$, tipologia tipologia, String Codice_Prodotto) {
         this.Nome_prodotto = Nome_prodotto;
         this.Casa_Produttrice = Casa_Produttrice;
         this.peso_oggetto_kg = peso_oggetto_kg;

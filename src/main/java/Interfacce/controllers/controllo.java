@@ -8,6 +8,10 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
+/*
+ La classe controllo è il fulcro del progetto e da la possibilità di accedere a tutte le schermate.
+*/
+
 public class controllo {
 
     @FXML

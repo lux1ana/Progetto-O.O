@@ -1,19 +1,23 @@
 package Classi;
+import Classi.Merce;
+import Classi.Magazzino;
+
+//La classe Immagazzinata è la classe utilizzata per la visualizzazione dei singoli prodotti all'interno del magazzino.
+
 public class Immagazzinata {
     private int quantita;        // Quantità dell'articolo immagazzinato
     public String Codice_Prodotto;
     private int numeroMagazzino;
 
-    // Costruttore che accetta direttamente gli oggetti Merce e Magazzino
     public Immagazzinata(Merce merce, Magazzino magazzino, int quantita) {
 
         this.quantita = quantita;
-        this.Codice_Prodotto = merce.getCodice_Prodotto();  // Prendiamo il codice prodotto dalla merce
-        this.numeroMagazzino = magazzino.getNumeroMagazzino(); // Prendiamo il numero magazzino
+        this.Codice_Prodotto = merce.getCodice_Prodotto();
+        this.numeroMagazzino = magazzino.getNumeroMagazzino();
     }
 
     public void setMagazzino(Magazzino magazzino) {
-        this.numeroMagazzino = magazzino.getNumeroMagazzino(); // Aggiorniamo anche il numero magazzino
+        this.numeroMagazzino = magazzino.getNumeroMagazzino();
     }
 
     public int getQuantita() {

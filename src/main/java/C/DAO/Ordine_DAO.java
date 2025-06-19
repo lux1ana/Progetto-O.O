@@ -36,8 +36,8 @@ public class Ordine_DAO {
 
     // Inserisce un nuovo ordine nel database
     public void insertOrdine(Ordine ordine) throws SQLException {
-        String query = "INSERT INTO Ordine (codice_ordine, data_ordine, Nome_Via, Numero, città, Provincia, Stato, Ordine_Effettuato, Peso, Costo, cod_fiscale_cliente, codice_spedizione, num_prodotti) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Ordine (codice_ordine, data_ordine, Nome_Via, Numero, città, Provincia, Stato," +
+                " Ordine_Effettuato, Peso, Costo, cod_fiscale_cliente, codice_spedizione, num_prodotti) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, ordine.getCodice_ordine());
@@ -52,7 +52,7 @@ public class Ordine_DAO {
             stmt.setDouble(10, ordine.getCosto());
             stmt.setString(11, ordine.getCod_fiscale_cliente().getCod_fiscale());
             stmt.setString(12, ordine.getCodice_spedizione().getCodice_spedizione());
-            stmt.setInt(13, ordine.getNum_prodotti()); // qui mancava!
+            stmt.setInt(13, ordine.getNum_prodotti());
 
             stmt.executeUpdate();
         }
@@ -142,7 +142,7 @@ public class Ordine_DAO {
     public List<Ordine> getOrdiniByNumeroProdotti(Date data) throws SQLException {
         List<Ordine> listaOrdini = new ArrayList<>();
 
-        // Query che filtra per mese/anno e ordina per num_prodotti DESC
+        // Query che filtra per mese/anno e ordina per numero in modo decrescente
         String query = "SELECT * FROM Ordine " +
                 "WHERE EXTRACT(MONTH FROM data_ordine) = EXTRACT(MONTH FROM ?::DATE) " +
                 "AND EXTRACT(YEAR FROM data_ordine) = EXTRACT(YEAR FROM ?::DATE) " +
@@ -162,4 +162,3 @@ public class Ordine_DAO {
         return listaOrdini;
     }
 }
-

@@ -6,8 +6,9 @@ public enum tipologia {
         Maradona_e_Napoli,
         Libri,
         Beauty_e_Benessere,
-        Altro; // fallback
+        Altro;
 
+        //Questo metodo seerve per eguagliare la scrittura di alcuni caratteri, non permessi in Java.
         public static tipologia parseTipologia(String valore) {
                 if (valore == null) return Altro;
 
@@ -17,10 +18,7 @@ public enum tipologia {
                         .replace(" & ", "_")
                         .replace(" e ", "_")
                         .replace(" ", "_");
-
-                // Metti la prima lettera maiuscola e il resto minuscolo per matchare con la enum
                 String formattato = normalizzato.substring(0, 1).toUpperCase() + normalizzato.substring(1).toLowerCase();
-
                 try {
                         return tipologia.valueOf(formattato);
                 } catch (IllegalArgumentException e) {

@@ -54,7 +54,8 @@ public class listaprodotti {
         }
 
         ricercabutton.setOnAction(e -> filtraProdotti());
-        indietroField.setOnAction(e -> tornaAllaSchermataControllo());
+        indietroField.setOnAction(e -> tornaIndietro(e));
+
     }
 
     private void caricaProdotti() throws SQLException {
@@ -135,10 +136,6 @@ public class listaprodotti {
         }
 
         prodottiTable.setItems(filtrati);
-    }
-
-    private void tornaAllaSchermataControllo() {
-        // Aggiungi qui il codice per tornare alla schermata di controllo
     }
 
     private void showAlert(String titolo, String messaggio) {

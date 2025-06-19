@@ -11,8 +11,6 @@ public class Cliente extends Persona {
     private String provincia;
     private String telefono;
 
-
-
     public Cliente(String nome, String cognome, Date dataNascita, String email, String password, String codiceFiscale, Genere genere, tipo_persona tipopersona, String nomeVia, int numero, String citta, String regione, String stato, String provincia, String telefono) {
         super(nome, cognome, dataNascita, email, password, codiceFiscale, tipopersona, genere);
         this.nomeVia = nomeVia;
@@ -30,12 +28,10 @@ public class Cliente extends Persona {
 
     public String getNomeVia() {
         return nomeVia;
-
     }
 
     public int getNumero() {
         return numero;
-
     }
 
     public String getCitta() {

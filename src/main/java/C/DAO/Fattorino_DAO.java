@@ -42,7 +42,7 @@ public class Fattorino_DAO {
         }
     }
 
-    // Metodo per ottenere tutti i fattorini
+    // Metodo per ottenere tutti i Fattorini
     public List<Fattorino> getAllFattorini() {
         List<Fattorino> fattorini = new ArrayList<>();
         String sql = "SELECT * FROM Persona WHERE tipo_persona = 'Fattorino'";
@@ -109,6 +109,7 @@ public class Fattorino_DAO {
         return fattorino;
     }
 
+    //Metodo per ottenere i Fattorini tramite la loro disponibilità
     public List<Fattorino> getFattoriniDisponibili() {
         List<Fattorino> fattoriniDisponibili = new ArrayList<>();
         String sql = "SELECT * FROM Persona  WHERE tipo_persona = 'Fattorino' AND  disponibilità = true";

@@ -9,15 +9,17 @@ public class Dipendente extends Persona {
     private Date data_assunzione;
 
 
-    public Dipendente(String nome, String cognome, Date dataNascita, String email, String password, String codiceFiscale, Genere genere, tipo_persona tipopersona, float stipendio, Date data_scadenza_contratto, Date data_assunzione) {
+    public Dipendente(String nome, String cognome, Date dataNascita, String email, String password,
+                      String codiceFiscale, Genere genere, tipo_persona tipopersona, float stipendio, Date data_scadenza_contratto, Date data_assunzione) {
+
         super(nome, cognome, dataNascita, email, password, codiceFiscale, tipopersona, genere);
+
         this.stipendio = stipendio;
         this.data_scadenza_contratto = data_scadenza_contratto;
         this.data_assunzione = data_assunzione;
 
     }
 
-    // Getter e Setter
     public float getStipendio() {
         return stipendio;
     }
@@ -43,4 +45,3 @@ public class Dipendente extends Persona {
     }
 
 }
-

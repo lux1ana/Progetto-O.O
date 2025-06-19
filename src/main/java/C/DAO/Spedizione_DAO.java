@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Spedizione_DAO {
     private final Connection conn;
-    private final Persona_DAO personaDao;  // Dipendenza per recuperare i fattorini completi
+    private final Persona_DAO personaDao;
 
     public Spedizione_DAO(Connection conn, Persona_DAO personaDao) {
         this.conn = conn;
@@ -18,12 +18,12 @@ public class Spedizione_DAO {
 
     // Aggiungi una nuova spedizione
     public void aggiungiSpedizione(Spedizione spedizione) throws SQLException {
-        String sql = "INSERT INTO Spedizione (CodiceSpedizione, CodiceFiscale_Fattorino, Tipo_Trasporto, PesoSpedizione, RegioneSpedizione, SpedizioneEffettuata, SpedizioneConclusa) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Spedizione (CodiceSpedizione, CodiceFiscale_Fattorino, Tipo_Trasporto, PesoSpedizione," +
+                " RegioneSpedizione, SpedizioneEffettuata, SpedizioneConclusa) " + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, spedizione.codice_spedizione);
-            stmt.setString(2, spedizione.CodiceFiscale_Fattorino.getCod_fiscale());  // Usa il CF dal oggetto Persona
+            stmt.setString(2, spedizione.CodiceFiscale_Fattorino.getCod_fiscale());
             stmt.setString(3, spedizione.Tipo_Trasporto.toString());
             stmt.setFloat(4, spedizione.pesoSpedizione);
             stmt.setString(5, spedizione.regioneSpedizione);
@@ -43,14 +43,14 @@ public class Spedizione_DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                // Recupera il fattorino COMPLETO dal database
+
                 Persona fattorino = personaDao.getPersonaByCodiceFiscale(rs.getString("CodiceFiscale_Fattorino"));
 
                 if (fattorino != null) {
                     Spedizione spedizione = new Spedizione(
                             rs.getString("codice_spedizione"),
                             fattorino,
-                            null,  // Da gestire il Tipo_Trasporto se necessario
+                            null,
                             rs.getFloat("PesoSpedizione"),
                             rs.getString("RegioneSpedizione"),
                             rs.getBoolean("SpedizioneEffettuata")
